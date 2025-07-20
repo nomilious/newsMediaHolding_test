@@ -14,9 +14,7 @@ export default (env: BuildEnv) => {
     const isDev = mode === 'development';
 
     // if branch is passed => use prod baseUrl
-    const apiUrl = env.branch
-        ? "https://tableback.kscgroup.ru/tabel_management"
-        : "https://tableback.kscgroup.ru/tabel_management"
+    const apiUrl = "https://dummyjson.com"
 
     return buildWebpackConfig({
         mode,

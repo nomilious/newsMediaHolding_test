@@ -5,7 +5,6 @@ export function buildCssLoaders(isDev: boolean) {
         // CSS files
         {
             test: /\.css$/i,
-            exclude: /node_modules/,
             use: [
                 isDev ? "style-loader" : MiniCssExtractPlugin.loader,
                 "css-loader",

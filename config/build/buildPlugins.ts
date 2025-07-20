@@ -1,18 +1,13 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from "copy-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import Dotenv from "dotenv-webpack";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import path from "path";
 import webpack from "webpack";
-import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
-import {BuildOptions} from "./types/config";
+import { BuildOptions } from "./types/config";
 
-const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'));
-const cMapsDir = path.join(pdfjsDistPath, 'cmaps');
 
-export function buildPlugins({paths, isDev, apiUrl}: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
         new HTMLWebpackPlugin({
             template: paths.html,
@@ -22,35 +17,27 @@ export function buildPlugins({paths, isDev, apiUrl}: BuildOptions): webpack.Webp
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
         }),
-        new Dotenv({
-            path: "./.env",
-        }),
+        // new Dotenv({
+        //     path: "./.env",
+        // }),
         new CopyWebpackPlugin({
             patterns: [
-                {from: 'public/', to: './', filter: filepath => !filepath.includes("index.html")},
+                { from: 'public/', to: './', filter: filepath => !filepath.includes("index.html") },
             ],
         }),
     ]
 
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin());
-        plugins.push(new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        }))
-    }
-    else {
+        // plugins.push(new BundleAnalyzerPlugin({
+        //     openAnalyzer: false,
+        // }))
+    } else {
         plugins.push(new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
         }));
-        plugins.push(new CopyPlugin({
-            patterns: [
-                {
-                    from: cMapsDir,
-                    to: 'cmaps/',
-                },
-            ],
-        }));
+        plugins.push(new CopyPlugin());
     }
 
     return plugins;

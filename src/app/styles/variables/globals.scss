@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --font-family-main: 'Inter', sans-serif, Montserrat;
+    // Font sizes (adjusting to scale with screen size)
+    --font-size-s: clamp(10px, 2vw, 12px);
+    --font-size-m: clamp(13px, 3vw, 16px);
+    --font-size-l: clamp(18px, 4vw, 24px);
+    --font-size-xl: clamp(22px, 5vw, 32px);
+    --font-line-s: 16px;
+    --font-line-m: 24px;
+    --font-line-l: 32px;
+    --font-line-xl: 40px;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+    // dimensions
+    --navbar-height: 78px;
+
+    // z-index
+    --modal-z-index: 10;
+
+    // from figma
+    --text-in-form: rgba(26, 7, 16, 0.65);
+    --btn-active: #00CFCA;
+    --main: #52BBB5;
+    --main-text-color: #4F4F4F;
+    --text-2-color: #262626;
+    --circles-color: #EBEBEB;
+    --font-weight-l: 600;
+    --sidebar-height: 100vh;
+    --sidebar-width: 356px;
+    --sidebar-width-collapsed: 80px;
+    --border-color: #C6CACF40;
+
+    // colors
+    --overlay-color: rgba(0 0 0 / 50%);
+
+    --page-margin-left: 24px;
+    --page-margin-right: 24px;
+    --page-grid-margin-top: 65px;
+    --page-margin-top: 35px;
+    --page-margin-bottom: 24px;
+    --letters_mainbox: rgba(26, 7, 16, 0.65);
+    --grey: rgba(147, 147, 147, 0.44);
+    --placeholder-color: #A1A1A1;
+
+    // monthPicker
+    --month-active-bg-color: var(--primary-color);
+    --month-hover-bg-color: #F4F4F4;
+
+    --text-color: #000;
+    --month-border-radius: 7px;
+    --picker-bg-color: #FFF;
+    --picker-padding: 2rem;
+    --year-display-margin-top: 0;
+    --year-display-margin-bottom: 1rem;
+    --month-select-padding: 0.5rem;
+    --input-bg-color: #FFF;
+    --input-hover-bg-color: #FFF;
+    --input-text-color: #000;
+    --month-input-font-size: 15px;
+    --month-input-width: 300px;
+    --month-input-padding: 0.4rem;
+
+    --border-input-radius: 16px;
+}
