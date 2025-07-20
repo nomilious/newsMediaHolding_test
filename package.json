@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "webpack server --env port=3000 --env mode=development",
-    "prod": "webpack --env mode=production"
+    "build": "webpack --env mode=production"
   },
   "eslintConfig": {
     "extends": [
