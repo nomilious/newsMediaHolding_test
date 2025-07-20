@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
-import { getPosts } from "entities/PostCard/model/service";
 import { Post, PostsState } from "./interface";
-
-const LIMIT = 10;
-
+import { getPosts, POST_LIMIT } from "./service";
 
 const initialState: PostsState = {
     items: [],
@@ -25,8 +22,8 @@ export const postSlice: Slice<PostsState> = createSlice({
             })
             .addCase(getPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
                 state.items.push(...action.payload);
-                state.skip += LIMIT;
-                state.hasMore = action.payload.length === LIMIT;
+                state.skip += POST_LIMIT;
+                state.hasMore = action.payload.length === POST_LIMIT;
                 state.loading = false;
             })
             .addCase(getPosts.rejected, (state, action) => {

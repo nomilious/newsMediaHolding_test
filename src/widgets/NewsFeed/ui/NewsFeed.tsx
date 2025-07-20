@@ -1,7 +1,8 @@
 import { Alert, List, Spin } from 'antd';
 import { PostCard } from 'entities/PostCard';
-import { getPosts } from "entities/PostCard/model/service";
+import { getPosts, POST_LIMIT } from "entities/PostCard/model/service";
 import { useInfiniteObserver } from 'features/infiniteScroll';
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import { useTypedSelector } from "shared/hooks/useTypedSelector";
@@ -23,11 +24,20 @@ export default function NewsFeed() {
     return (
         <List
             dataSource={items}
-            renderItem={(item, i) => (
-                <div ref={i === items.length - 1 ? lastRef : undefined}>
-                    <PostCard post={item}/>
-                </div>
-            )}
+            rowKey="id"
+            renderItem={(item, i) => {
+                const isLast = i === items.length - 1;
+                return (
+                    <motion.div
+                        ref={isLast ? lastRef : undefined}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (i % POST_LIMIT) * 0.1 }}
+                    >
+                        <PostCard post={item}/>
+                    </motion.div>
+                );
+            }}
         >
             {loading && (
                 <div style={{ textAlign: 'center', padding: 16 }}>
